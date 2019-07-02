@@ -17,6 +17,10 @@ application {
     mainClassName = "io.ktor.server.jetty.EngineMain"
 }
 
+tasks.withType<KotlinCompile> {
+	kotlinOptions.jvmTarget = "1.8"
+}
+
 repositories {
     mavenLocal()
     jcenter()
