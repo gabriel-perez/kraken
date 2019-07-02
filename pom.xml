@@ -48,4 +48,32 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <profiles>
+    <profile>
+     <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
+     <!-- Use this profile for any OpenShift specific customization your app will need. -->
+     <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
+     <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+     <id>openshift</id>
+     <build>
+	  <plugins>
+		<plugin>
+		  <!-- Build an executable JAR -->
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-jar-plugin</artifactId>
+		  <version>3.1.0</version>
+		  <configuration>
+			<archive>
+			  <manifest>
+				<addClasspath>true</addClasspath>
+				<classpathPrefix>lib/</classpathPrefix>
+				<mainClass>io.ktor.server.jetty.EngineMain</mainClass>
+			  </manifest>
+			</archive>
+		  </configuration>
+		</plugin>
+	  </plugins>
+	</build>
+    </profile>
+  </profiles>
 </project>
