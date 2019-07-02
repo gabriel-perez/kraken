@@ -8,6 +8,7 @@ val kotlin_version: String by project
 plugins {
     application
     kotlin("jvm") version "1.3.30"
+	id("maven")
 }
 
 group = "gdps.com.kraken"
@@ -28,12 +29,16 @@ repositories {
 }
 
 dependencies {
+	
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
     compile("io.ktor:ktor-server-jetty:$ktor_version")
     compile("ch.qos.logback:logback-classic:$logback_version")
     compile("io.ktor:ktor-server-core:$ktor_version")
     compile("io.ktor:ktor-locations:$ktor_version")
+	compile("commons-lang:commons-lang:2.3")
+	
     testCompile("io.ktor:ktor-server-tests:$ktor_version")
+	
 }
 
 kotlin.sourceSets["main"].kotlin.srcDirs("src")
