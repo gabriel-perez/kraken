@@ -8,6 +8,7 @@ val kotlin_version: String by project
 plugins {
     application
     kotlin("jvm") version "1.3.30"
+    id("java")
 }
 
 group = "gdps.com.kraken"
@@ -16,6 +17,7 @@ version = "0.0.1-SNAPSHOT"
 application {
     mainClassName = "io.ktor.server.jetty.EngineMain"
 }
+
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions.jvmTarget = "1.8"
@@ -34,10 +36,21 @@ dependencies {
     compile("ch.qos.logback:logback-classic:$logback_version")
     compile("io.ktor:ktor-server-core:$ktor_version")
     compile("io.ktor:ktor-locations:$ktor_version")
-	
+
     testCompile("io.ktor:ktor-server-tests:$ktor_version")
 	
 }
+
+
+tasks {
+    withType<Jar> {
+        manifest {
+            attributes(mapOf("Main-Class" to application.mainClassName))
+
+        }
+    }
+}
+
 
 kotlin.sourceSets["main"].kotlin.srcDirs("src")
 kotlin.sourceSets["test"].kotlin.srcDirs("test")
