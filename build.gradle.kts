@@ -26,7 +26,6 @@ tasks.withType<KotlinCompile> {
 repositories {
     mavenLocal()
     jcenter()
-    maven { url = uri("https://kotlin.bintray.com/ktor") }
 }
 
 dependencies {
@@ -41,12 +40,11 @@ dependencies {
 	
 }
 
-
 tasks {
     withType<Jar> {
         manifest {
             attributes(mapOf("Main-Class" to application.mainClassName))
-
+			attributes(mapOf("Class-Path" to (configurations.compile.map { it.getName() }).joinToString(" ")))
         }
     }
 }
