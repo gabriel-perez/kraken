@@ -40,14 +40,7 @@ dependencies {
 	
 }
 
-tasks {
-    withType<Jar> {
-        manifest {
-            attributes(mapOf("Main-Class" to application.mainClassName))
-			attributes(mapOf("Class-Path" to (configurations.compile.map { it.getName() }).joinToString(" ")))
-        }
-    }
-}
+
 
 
 kotlin.sourceSets["main"].kotlin.srcDirs("src")
