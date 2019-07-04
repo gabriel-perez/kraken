@@ -18,13 +18,11 @@ application {
     mainClassName = "io.ktor.server.jetty.EngineMain"
 }
 
-
 tasks.withType<KotlinCompile> {
 	kotlinOptions.jvmTarget = "1.8"
 }
 
 repositories {
-    mavenLocal()
     jcenter()
 }
 
@@ -39,9 +37,6 @@ dependencies {
     testCompile("io.ktor:ktor-server-tests:$ktor_version")
 	
 }
-
-
-
 
 kotlin.sourceSets["main"].kotlin.srcDirs("src")
 kotlin.sourceSets["test"].kotlin.srcDirs("test")
